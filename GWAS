@@ -1,0 +1,52 @@
+---
+title: "Hop Genome-Wide Association Panel for Agronomic and Brewing Traits"
+author: "Joshua Havill"
+date: "09/01/2017"
+output:
+  md_document:
+    variant: markdown_github
+---
+
+# GAPIT - Genomic Association and Prediction Integrated Tool
+# Designed by Zhiwu Zhang
+# Written by Zhiwu Zhang, Alex Lipka, Feng Tian and You Tang
+# Last update: September 15, 2015
+
+#Install packages (Do this section only for new installation of R)
+#-------------------------------------------------------------------------------
+#source("http://www.bioconductor.org/biocLite.R") 
+#biocLite("multtest")
+#install.packages("gplots")
+#install.packages("scatterplot3d")
+#The downloaded link at: http://cran.r-project.org/package=scatterplot3d
+
+#Step 0: Import library and GAPIT functions run this section each time to start R)
+#######################################################################################
+library('MASS') # required for ginv
+library('multtest')
+library('gplots')
+library('compiler') #required for cmpfun
+library('scatterplot3d')
+
+source("http://www.zzlab.net/GAPIT/emma.txt")
+source("http://www.zzlab.net/GAPIT/gapit_functions.txt")
+
+#source("/Users/Zhiwu/Dropbox/Current/revolutionr/gapit/gapit_functions.txt")
+#############################################################################################
+
+#download tutorial data and save them in myGAPIT directory under C drive and  run tutorials
+setwd("/myGAPIT")
+
+
+#Tutorial 1: Basic Scenario of Compressed MLM by Zhang and et. al. (Nature Genetics, 2010) 
+#----------------------------------------------------------------------------------------
+#Step 1: Set data directory and import files
+myY  <- data
+myG <- read.delim("Hop_SNPs_wNewportMap_positioned.hmp.txt", head = FALSE)
+
+#Step 2: Run GAPIT
+myGAPIT <- GAPIT(
+  Y=myY,
+  G=myG,
+  PCA.total=0,
+  )
